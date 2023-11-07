@@ -2,6 +2,7 @@ from ultralytics import YOLO
 import cv2
 import math 
 
+
 # model
 model = YOLO("yolo-Weights/yolov8n.pt")
 # object classes
@@ -18,7 +19,7 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
               ]
 
 # initialize the webcam
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0) 
 cap.set(3, 640)
 cap.set(4, 480)
 
