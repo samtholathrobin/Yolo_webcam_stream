@@ -22,7 +22,7 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
 num_person=''
 
 # initialize the webcam
-cap = cv2.VideoCapture('pexels_videos_4698 (1080p).mp4') 
+cap = cv2.VideoCapture(0) 
 cap.set(3, 640)
 cap.set(4, 480)
 
