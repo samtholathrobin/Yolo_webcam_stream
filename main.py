@@ -25,7 +25,7 @@ num_person=''
 color=''
 
 # initialize the webcam
-cap = cv2.VideoCapture(0) 
+cap = cv2.VideoCapture('video (1080p).mp4') 
 cap.set(3, 640)
 cap.set(4, 480)
 
@@ -53,8 +53,13 @@ while True:
                 
             
     for r in results:
-        num_person="Number of people : "+str(r.boxes.cls.tolist().count(p_id))
-        cv2.putText(img,num_person,[20,35],cv2.FONT_HERSHEY_SIMPLEX,1.5,(0, 0, 255),3)
+        no_of_det=0
+        for i in range(len(classNames)):
+            if no_of_det<=15:
+                if r.boxes.cls.tolist().count(i)!=0:
+                    num="Number of "+classNames[i]+" : "+str(r.boxes.cls.tolist().count(i))
+                    cv2.putText(img,num,[20,35+no_of_det*30],cv2.FONT_HERSHEY_SIMPLEX,0.75,(0, 0, 255),1)
+                    no_of_det+=1
         boxes = r.boxes
         for box in boxes:
             # bounding box

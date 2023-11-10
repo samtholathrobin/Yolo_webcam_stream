@@ -1,0 +1,10 @@
+Animals - person, bird, cat, dog, horse, sheep, cow, elephant, bear, zebra, giraffe
+Locomotives - bicycle, car, motorcycle, airplane, bus, train, truck, boat
+Road Side - traffic light, fire hydrant, stop sign, parking meter, bench
+Accessories - backpack, umbrella, handbag, tie, suitcase
+Sports - frisbee, skis, snowboard, sports ball, kite, baseball bat, baseball glove, skateboard, surfboard, tennis racket
+Restaurant - bottle, wine glass, cup, fork, knife, spoon, bowl
+Food - banana, apple, sandwich, orange, broccoli, carrot, hot dog, pizza, donut, cake
+Home interior - chair, couch, potted plant, bed, dining table, toilet, sink, clock, vase, 
+Electronics/Appliances - tv, laptop, mouse, remote, keyboard, cell phone, microwave, oven, toaster, refrigerator, hair drier
+Miscellaneous - book, scissors, teddy bear, toothbrush
