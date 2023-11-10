@@ -1,8 +1,6 @@
 import numpy as np
-from sklearn.cluster import KMeans 
 import scipy
 import colorsys
-import cv2
 
 def dom_rgb_mine(ar):
     shape=ar.shape
