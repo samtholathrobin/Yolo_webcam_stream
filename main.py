@@ -1,9 +1,11 @@
 from ultralytics import YOLO
 import cv2
-
+from utils import rgb_to_color,dom_rgb_mine
 # model
 model = YOLO("yolo-Weights/yolov8n.pt")
+model_dress=YOLO("best.pt")
 names=model.names
+dnames=model_dress.names
 p_id = list(names)[list(names.values()).index('person')]
 
 # object classes
@@ -20,16 +22,36 @@ classNames = ["person", "bicycle", "car", "motorbike", "aeroplane", "bus", "trai
               ]
 
 num_person=''
+color=''
 
 # initialize the webcam
-cap = cv2.VideoCapture(0) 
+cap = cv2.VideoCapture('video (1080p).mp4') 
 cap.set(3, 640)
 cap.set(4, 480)
 
 while True:
     success, img = cap.read()
     results = model(img, stream=True)
-    # coordinates
+    dresses=model_dress(img,stream=True)
+    for d in dresses:
+        boxes = d.boxes
+        for box in boxes:
+            cls = int(box.cls[0])
+            if (dnames[cls]=='shirt' or dnames[cls]=='Tshirt' or dnames[cls]=='jacket' or dnames[cls]=='dress'):
+                x1, y1, x2, y2 = box.xyxy[0]
+                x1, y1, x2, y2 = int(x1), int(y1), int(x2), int(y2) 
+                cropped_dress=img[y1:y2,x1:x2]
+                r,g,b=dom_rgb_mine(cropped_dress)
+                color=rgb_to_color(r,g,b)
+                cv2.rectangle(img, (x1, y1), (x2, y2), (0,230,0), 3)
+                org = [x1, y1]
+                font = cv2.FONT_HERSHEY_SIMPLEX
+                fontScale = 1
+                colorout = (120,10,123)
+                thickness = 2
+                cv2.putText(img, dnames[cls]+" "+color, org, font, fontScale, colorout, thickness)
+                
+            
     for r in results:
         num_person="Number of people : "+str(r.boxes.cls.tolist().count(p_id))
         cv2.putText(img,num_person,[20,35],cv2.FONT_HERSHEY_SIMPLEX,1.5,(0, 0, 255),3)
